@@ -12,7 +12,7 @@ public class Dresseur {
 
 
     //Attributs de classe
-    public Pokemon[] pokemons;
+    public Pokemon[] pokemons = new Pokemon[6];
 
     // Méthodes
 
@@ -43,6 +43,31 @@ public class Dresseur {
     /** Méthode d'affichage des informations du dresseur.
      */
     public void afficher() {
-        System.out.println(this.prenom);
+        System.out.println("******* Dresseur *******");
+        System.out.printf("%s%n", this.prenom);
+        System.out.println();
+        System.out.println("******** Équipe ********");
+        for (int i = 0; i < pokemons.length; i++) {
+            System.out.printf("Pokémon %d :%n", i+1);
+            if (pokemons[i] != null) {
+                pokemons[i].afficher();
+                System.out.println();
+            }
+            else {
+                System.out.println("(vide)");
+                System.out.println();
+            }
+        }
+        System.out.println();
+    }
+
+    public void capture(Pokemon pokemonCapture) {
+        for (int i = 0; i < pokemons.length; i++) {
+            if (pokemons[i] == null) {
+                pokemons[i] = pokemonCapture;
+                pokemons[i].setDresseur(this);
+                break;
+            }
+        }
     }
 }

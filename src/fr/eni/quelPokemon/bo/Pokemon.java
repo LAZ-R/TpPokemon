@@ -1,5 +1,7 @@
 package fr.eni.quelPokemon.bo;
 
+import java.util.Random;
+
 /** Classe qui représente un Pokémon.
  *
  * @author laz_R
@@ -120,17 +122,31 @@ public class Pokemon {
     /** Méthode d'affichage des informations d'un Pokémon.
      */
     public void afficher() {
-        System.out.println(this.nom);
-        System.out.println(this.taille);
-        System.out.println(this.poids);
-        System.out.println(this.pv);
+        System.out.printf("%s%n",this.nom.toUpperCase());
+        System.out.printf("Taille : %.2fm%n", (double) this.taille / 100);
+        System.out.printf("Poids : %.2fkg%n", (double) this.poids / 1000);
+        System.out.printf("Points de vie : %dpv%n",this.pv);
         System.out.println("Attaque 01 :");
         this.attaque01.afficher();
         System.out.println("Attaque 02 :");
         this.attaque02.afficher();
         if (this.dresseur != null) {
-            System.out.println("Dresseur :");
-            this.dresseur.afficher();
+            System.out.printf("Dresseur : %s%n",this.dresseur.getPrenom());
+        }
+
+    }
+
+    public void attaque (Pokemon pokemonAttaque) {
+        double rand = Math.random();
+        if (rand > 0.1) {
+            System.out.printf("%s lance %s%n", this.nom, this.attaque01.getNom());
+            pokemonAttaque.setPv(pokemonAttaque.getPv() - this.attaque01.getPointsDeDegats());
+            System.out.printf("%s perds %d points de vie !%n%n", pokemonAttaque.getNom(), this.attaque01.getPointsDeDegats());
+        }
+        else {
+            System.out.printf("%s lance %s%n", this.nom, this.attaque02.getNom());
+            pokemonAttaque.setPv(pokemonAttaque.getPv() - this.attaque02.getPointsDeDegats());
+            System.out.printf("%s perds %d points de vie !%n%n", pokemonAttaque.getNom(), this.attaque02.getPointsDeDegats());
         }
 
     }
