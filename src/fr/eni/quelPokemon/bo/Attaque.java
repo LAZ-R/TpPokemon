@@ -42,6 +42,8 @@ public class Attaque {
         this.pointsDeDegats = pointsDeDegats;
     }
 
+    /** Méthode d'affichage des informations d'une attaque.
+     */
     public void afficher() {
         System.out.printf("L'attaque %s inflige %d points de dégâts.%n", this.nom, this.pointsDeDegats);
     }
