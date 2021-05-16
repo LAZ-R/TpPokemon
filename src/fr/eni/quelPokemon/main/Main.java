@@ -21,48 +21,49 @@ public class Main {
 
     public static void main(String[] args) {
 
-        texte.intro();
+        // Début
+        texte.intro_1();
 
+        // Création du joueur
         String nom_joueur = global_scanner.nextLine();
         Dresseur joueur = new Dresseur(nom_joueur);
 
+        // Début de l'histoire
+        texte.intro_2(joueur.getPrenom());
+        System.out.println();
+        System.out.println("(appuye sur ENTRÉE pour continuer)");
+        global_scanner.nextLine();
+
+        // Acquisition du Pikachu
         Attaque statik = new Attaque("Statik", 20);
         Attaque paratonnerre = new Attaque("Paratonnerre", 75);
-
         Pokemon pikachu = new Pokemon("Pikachu",40,6000,120,statik,paratonnerre, null, null);
 
         joueur.capture_sansCondition(pikachu);
+        System.out.printf("%s a capturé un %s !%n",joueur.getPrenom(), pikachu.getNom());
+        System.out.println();
 
         System.out.println("Félicitation, voici ton premier Pokémon !");
         System.out.println();
+
         pikachu.afficher();
+
         System.out.println();
-        System.out.println("appuye sur ENTRÉE pour continuer");
+        System.out.println("(appuye sur ENTRÉE pour continuer)");
         global_scanner.nextLine();
-        Dresseur ondine = new Dresseur("Ondine");
 
-
-        // NORMAL
+        // Création du 1er ennemi
+        Dresseur james = new Dresseur("James");
 
         Attaque cran = new Attaque("Cran", 10);
         Attaque agitation = new Attaque("Agitation", 35);
-
-
-        // ELECTRIK
-
-
-
-        //sacha.afficher();
-
-
-
         Pokemon rattata = new Pokemon("Rattata", 30,3500,90,cran,agitation, null, null);
 
-        ondine.capture_sansCondition(rattata);
+        james.capture_sansCondition(rattata);
 
-        //ondine.afficher();
 
-        combat.pokemon(pikachu, rattata);
+        // 1er combat
+        combat.dresseurs(joueur, james);
 
     }
 }
