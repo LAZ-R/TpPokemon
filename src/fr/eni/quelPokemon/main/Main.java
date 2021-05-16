@@ -27,6 +27,7 @@ public class Main {
         // Création du joueur
         String nom_joueur = global_scanner.nextLine();
         Dresseur joueur = new Dresseur(nom_joueur);
+        System.out.println();
 
         // Début de l'histoire
         texte.intro_2(joueur.getPrenom());
@@ -40,9 +41,7 @@ public class Main {
         Pokemon pikachu = new Pokemon("Pikachu",40,6000,120,statik,paratonnerre, null, null);
 
         joueur.capture_sansCondition(pikachu);
-        System.out.printf("%s a capturé un %s !%n",joueur.getPrenom(), pikachu.getNom());
-        System.out.println();
-
+        System.out.printf("%s a reçu un %s !%n",joueur.getPrenom(), pikachu.getNom());
         System.out.println("Félicitation, voici ton premier Pokémon !");
         System.out.println();
 

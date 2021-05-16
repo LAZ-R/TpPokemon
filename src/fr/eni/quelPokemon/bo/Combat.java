@@ -23,9 +23,10 @@ public class Combat {
             System.out.println("Quelle attaque voulez-vous lancer ?");
             pokemon1.afficherSetAttaques();
             int reponse_utilisateur = scan.nextInt() - 1;
-
-            if (pokemon1.set_attaques[reponse_utilisateur] != null) {
-                pokemon1.attaque(pokemon1.set_attaques[reponse_utilisateur], pokemon2);
+            if (reponse_utilisateur < pokemon1.set_attaques.length && reponse_utilisateur >= 0) {
+                if (pokemon1.set_attaques[reponse_utilisateur] != null) {
+                    pokemon1.attaque(pokemon1.set_attaques[reponse_utilisateur], pokemon2);
+                }
             }
             else {
                 System.out.printf("%s essaye de lancer cette attaque, mais il semble ne pas la connaître%n%n", pokemon1.getNom());
