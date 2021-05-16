@@ -31,6 +31,7 @@ public class Main {
 
         // Début de l'histoire
         texte.intro_2(joueur.getPrenom());
+
         System.out.println();
         System.out.println("(appuye sur ENTRÉE pour continuer)");
         global_scanner.nextLine();
@@ -38,9 +39,10 @@ public class Main {
         // Acquisition du Pikachu
         Attaque statik = new Attaque("Statik", 20);
         Attaque paratonnerre = new Attaque("Paratonnerre", 75);
-        Pokemon pikachu = new Pokemon("Pikachu",40,6000,120,statik,paratonnerre, null, null);
+        Pokemon pikachu = new Pokemon("Pikachu",40,6000,120, statik, paratonnerre, null, null);
 
         joueur.capture_sansCondition(pikachu);
+
         System.out.printf("%s a reçu un %s !%n",joueur.getPrenom(), pikachu.getNom());
         System.out.println("Félicitation, voici ton premier Pokémon !");
         System.out.println();
@@ -51,17 +53,26 @@ public class Main {
         System.out.println("(appuye sur ENTRÉE pour continuer)");
         global_scanner.nextLine();
 
-        // Création du 1er ennemi
-        Dresseur james = new Dresseur("James");
 
+        // 1ère rencontre sauvage
         Attaque cran = new Attaque("Cran", 10);
         Attaque agitation = new Attaque("Agitation", 35);
-        Pokemon rattata = new Pokemon("Rattata", 30,3500,90,cran,agitation, null, null);
+        Pokemon rattata = new Pokemon("Rattata", 30,3500,90, cran, agitation, null, null);
 
-        james.capture_sansCondition(rattata);
+        System.out.println("Attention, un pokémon sauvage attaque !");
+        System.out.println();
+        System.out.println("(appuye sur ENTRÉE pour continuer)");
+        global_scanner.nextLine();
 
+        combat.pokemonSansDresseurs(pikachu, rattata);
 
-        // 1er combat
+        // Création du 1er ennemi
+        Dresseur james = new Dresseur("James");
+        Attaque crocDeMort = new Attaque("Croc-de-Mort", 100);
+        Pokemon rattatac = new Pokemon("Rattatac", 130,13500,190, cran, agitation, crocDeMort, null);
+        james.capture_sansCondition(rattatac);
+
+        // 1er combat de dresseur
         combat.dresseurs(joueur, james);
 
     }
