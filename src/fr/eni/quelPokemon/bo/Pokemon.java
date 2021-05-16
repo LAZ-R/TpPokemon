@@ -21,7 +21,7 @@ public class Pokemon {
     private Dresseur dresseur;
 
     // Attributs de classe
-
+    public Attaque[] set_attaques = new Attaque[4];
     // Méthodes
 
     /** Constructeur avec tous les paramètres, sauf Dresseur.
@@ -33,13 +33,16 @@ public class Pokemon {
      * @param attaque01 Attaque
      * @param attaque02 Attaque
      */
-    public Pokemon(String nom, int taille, int poids, int pv, Attaque attaque01, Attaque attaque02) {
+    public Pokemon(String nom, int taille, int poids, int pv, Attaque attaque01, Attaque attaque02, Attaque attaque03, Attaque attaque04) {
         this.nom = nom;
         this.taille = taille;
         this.poids = poids;
         this.pv = pv;
-        this.attaque01 = attaque01;
-        this.attaque02 = attaque02;
+        this.set_attaques[0] = attaque01;
+        this.set_attaques[1] = attaque02;
+        this.set_attaques[2] = attaque03;
+        this.set_attaques[3] = attaque04;
+
         this.dresseur = null;
     }
 
@@ -53,13 +56,15 @@ public class Pokemon {
      * @param attaque02 Attaque
      * @param dresseur Dresseur
      */
-    public Pokemon(String nom, int taille, int poids, int pv, Attaque attaque01, Attaque attaque02, Dresseur dresseur) {
+    public Pokemon(String nom, int taille, int poids, int pv, Attaque attaque01, Attaque attaque02, Attaque attaque03, Attaque attaque04, Dresseur dresseur) {
         this.nom = nom;
         this.taille = taille;
         this.poids = poids;
         this.pv = pv;
-        this.attaque01 = attaque01;
-        this.attaque02 = attaque02;
+        this.set_attaques[0] = attaque01;
+        this.set_attaques[1] = attaque02;
+        this.set_attaques[2] = attaque03;
+        this.set_attaques[3] = attaque04;
         this.dresseur = dresseur;
     }
 
@@ -127,26 +132,29 @@ public class Pokemon {
         System.out.printf("Poids : %.2fkg%n", (double) this.poids / 1000);
         System.out.printf("Points de vie : %dpv%n",this.pv);
         System.out.println("Attaque 01 :");
-        this.attaque01.afficher();
+        this.set_attaques[0].afficher();
         System.out.println("Attaque 02 :");
-        this.attaque02.afficher();
+        this.set_attaques[1].afficher();
+        System.out.println("Attaque 03 :");
+        this.set_attaques[2].afficher();
+        System.out.println("Attaque 04 :");
+        this.set_attaques[3].afficher();
         if (this.dresseur != null) {
             System.out.printf("Dresseur : %s%n",this.dresseur.getPrenom());
         }
 
     }
 
-    public void attaque (Pokemon pokemonAttaque) {
+    public void attaque (Attaque attaque, Pokemon pokemonAttaque) {
         double rand = Math.random();
         if (rand > 0.1) {
-            System.out.printf("%s lance %s%n", this.nom, this.attaque01.getNom());
-            pokemonAttaque.setPv(pokemonAttaque.getPv() - this.attaque01.getPointsDeDegats());
-            System.out.printf("%s perds %d points de vie !%n%n", pokemonAttaque.getNom(), this.attaque01.getPointsDeDegats());
+            System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+            pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
+            System.out.printf("%s perds %d points de vie !%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats());
         }
         else {
-            System.out.printf("%s lance %s%n", this.nom, this.attaque02.getNom());
-            pokemonAttaque.setPv(pokemonAttaque.getPv() - this.attaque02.getPointsDeDegats());
-            System.out.printf("%s perds %d points de vie !%n%n", pokemonAttaque.getNom(), this.attaque02.getPointsDeDegats());
+            System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+            System.out.printf("%s rate son attaque !%n%n",this.nom);
         }
 
     }
