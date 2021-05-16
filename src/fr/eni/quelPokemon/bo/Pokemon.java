@@ -13,10 +13,8 @@ public class Pokemon {
     private String nom;
     private int taille;
     private int poids;
+    private int pvMax;
     private int pv;
-
-    private Attaque attaque01;
-    private Attaque attaque02;
 
     private Dresseur dresseur;
 
@@ -32,11 +30,14 @@ public class Pokemon {
      * @param pv int
      * @param attaque01 Attaque
      * @param attaque02 Attaque
+     * @param attaque03 Attaque
+     * @param attaque04 Attaque
      */
     public Pokemon(String nom, int taille, int poids, int pv, Attaque attaque01, Attaque attaque02, Attaque attaque03, Attaque attaque04) {
         this.nom = nom;
         this.taille = taille;
         this.poids = poids;
+        this.pvMax = pv;
         this.pv = pv;
         this.set_attaques[0] = attaque01;
         this.set_attaques[1] = attaque02;
@@ -54,12 +55,15 @@ public class Pokemon {
      * @param pv int
      * @param attaque01 Attaque
      * @param attaque02 Attaque
+     * @param attaque03 Attaque
+     * @param attaque04 Attaque
      * @param dresseur Dresseur
      */
     public Pokemon(String nom, int taille, int poids, int pv, Attaque attaque01, Attaque attaque02, Attaque attaque03, Attaque attaque04, Dresseur dresseur) {
         this.nom = nom;
         this.taille = taille;
         this.poids = poids;
+        this.pvMax = pv;
         this.pv = pv;
         this.set_attaques[0] = attaque01;
         this.set_attaques[1] = attaque02;
@@ -100,28 +104,23 @@ public class Pokemon {
         this.pv = pv;
     }
 
-    public Attaque getAttaque01() {
-        return this.attaque01;
-    }
-
-    public void setAttaque01(Attaque attaque01) {
-        this.attaque01 = attaque01;
-    }
-
-    public Attaque getAttaque02() {
-        return this.attaque02;
-    }
-
-    public void setAttaque02(Attaque attaque02) {
-        this.attaque02 = attaque02;
-    }
-
     public Dresseur getDresseur() {
         return this.dresseur;
     }
 
     public void setDresseur(Dresseur dresseur) {
         this.dresseur = dresseur;
+    }
+
+    /** Méthode d'affichage du set d'attaque d'un pokémon
+     */
+    public void afficherSetAttaques() {
+        for (int i = 0; i < this.set_attaques.length; i++) {
+            if (this.set_attaques[i] != null) {
+                System.out.printf("%d : ", i + 1);
+                this.set_attaques[i].afficher();
+            }
+        }
     }
 
     /** Méthode d'affichage des informations d'un Pokémon.
@@ -131,14 +130,8 @@ public class Pokemon {
         System.out.printf("Taille : %.2fm%n", (double) this.taille / 100);
         System.out.printf("Poids : %.2fkg%n", (double) this.poids / 1000);
         System.out.printf("Points de vie : %dpv%n",this.pv);
-        System.out.println("Attaque 01 :");
-        this.set_attaques[0].afficher();
-        System.out.println("Attaque 02 :");
-        this.set_attaques[1].afficher();
-        System.out.println("Attaque 03 :");
-        this.set_attaques[2].afficher();
-        System.out.println("Attaque 04 :");
-        this.set_attaques[3].afficher();
+        System.out.println("Liste des attaques :");
+        this.afficherSetAttaques();
         if (this.dresseur != null) {
             System.out.printf("Dresseur : %s%n",this.dresseur.getPrenom());
         }

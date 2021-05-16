@@ -61,13 +61,23 @@ public class Dresseur {
         System.out.println();
     }
 
-    public void capture(Pokemon pokemonCapture) {
-        for (int i = 0; i < pokemons.length; i++) {
+    public void capture_sansCondition(Pokemon pokemonCapture) {
+        for (int i = 0; i < this.pokemons.length; i++) {
             if (pokemons[i] == null) {
                 pokemons[i] = pokemonCapture;
                 pokemons[i].setDresseur(this);
                 break;
             }
         }
+    }
+
+    public int combienDePokemon() {
+        int nbPoke = 0;
+        for (int i = 0; i < this.pokemons.length; i++) {
+            if (pokemons[i] == null) {
+                nbPoke +=1;
+            }
+        }
+        return nbPoke;
     }
 }

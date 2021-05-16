@@ -5,6 +5,8 @@ import fr.eni.quelPokemon.bo.Combat;
 import fr.eni.quelPokemon.bo.Dresseur;
 import fr.eni.quelPokemon.bo.Pokemon;
 
+import java.util.Scanner;
+
 /** Classe Main
  *
  * @author laz_R
@@ -12,27 +14,51 @@ import fr.eni.quelPokemon.bo.Pokemon;
  */
 public class Main {
 
+    static Scanner global_scanner = new Scanner(System.in);
+    static HistoireTextes texte = new HistoireTextes();
+    static Combat combat = new Combat();
+
 
     public static void main(String[] args) {
-        Combat combat = new Combat();
-        Dresseur sacha = new Dresseur("Sacha");
-        Dresseur ondine = new Dresseur("Ondine");
+
+        texte.intro();
+
+        String nom_joueur = global_scanner.nextLine();
+        Dresseur joueur = new Dresseur(nom_joueur);
 
         Attaque statik = new Attaque("Statik", 20);
         Attaque paratonnerre = new Attaque("Paratonnerre", 75);
 
         Pokemon pikachu = new Pokemon("Pikachu",40,6000,120,statik,paratonnerre, null, null);
 
-        sacha.capture(pikachu);
+        joueur.capture_sansCondition(pikachu);
 
-        //sacha.afficher();
+        System.out.println("Félicitation, voici ton premier Pokémon !");
+        System.out.println();
+        pikachu.afficher();
+        System.out.println();
+        System.out.println("appuye sur ENTRÉE pour continuer");
+        global_scanner.nextLine();
+        Dresseur ondine = new Dresseur("Ondine");
+
+
+        // NORMAL
 
         Attaque cran = new Attaque("Cran", 10);
         Attaque agitation = new Attaque("Agitation", 35);
 
+
+        // ELECTRIK
+
+
+
+        //sacha.afficher();
+
+
+
         Pokemon rattata = new Pokemon("Rattata", 30,3500,90,cran,agitation, null, null);
 
-        ondine.capture(rattata);
+        ondine.capture_sansCondition(rattata);
 
         //ondine.afficher();
 
