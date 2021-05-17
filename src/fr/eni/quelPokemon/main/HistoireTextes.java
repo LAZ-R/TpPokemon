@@ -9,7 +9,7 @@ public class HistoireTextes {
     public void continuer() {
 
         System.out.println();
-        System.out.println("(appuye sur ENTRÉE pour continuer)");
+        System.out.println("(Appuie sur ENTRÉE pour continuer)");
         global_scanner.nextLine();
 
     }

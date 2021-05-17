@@ -102,6 +102,9 @@ public class Pokemon {
 
     public void setPv(int pv) {
         this.pv = pv;
+        if (this.pv < 0) {
+            this.pv = 0;
+        }
     }
 
     public int getPvMax() {
@@ -147,15 +150,45 @@ public class Pokemon {
 
     public void attaque (Attaque attaque, Pokemon pokemonAttaque) {
         double rand = Math.random();
-        if (rand > 0.1) {
-            System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
-            pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
-            System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+
+        if (this.pv / this.pvMax >= 0.35) {
+            if (rand > 0.1) {
+                System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+                if (rand > 0.85) {
+                    pokemonAttaque.setPv(pokemonAttaque.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
+                    System.out.println("Coup critique !");
+                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                }
+                else {
+                    pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
+                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                }
+
+            }
+            else {
+                System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+                System.out.printf("%s rate son attaque !%n%n",this.nom);
+            }
         }
         else {
-            System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
-            System.out.printf("%s rate son attaque !%n%n",this.nom);
+            if (rand > 0.2) {
+                System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+                if (rand > 0.85) {
+                    pokemonAttaque.setPv(pokemonAttaque.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
+                    System.out.println("Coup critique !");
+                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                }
+                else {
+                    pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
+                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                }
+            }
+            else {
+                System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+                System.out.printf("%s rate son attaque !%n%n",this.nom);
+            }
         }
+
 
     }
 }

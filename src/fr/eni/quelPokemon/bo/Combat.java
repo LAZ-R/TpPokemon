@@ -16,9 +16,10 @@ public class Combat {
 
             // Partie 1 : Pokémon du joueur
 
-            System.out.println("Quelle attaque voulez-vous lancer ?");
+            System.out.println("Quelle attaque veux-tu lancer ?");
             pokemon1.afficherSetAttaques();
             int reponse_utilisateur = scan.nextInt() - 1;
+            scan.nextLine();
             if (reponse_utilisateur < pokemon1.set_attaques.length && reponse_utilisateur >= 0) {
                 if (pokemon1.set_attaques[reponse_utilisateur] != null) {
                     pokemon1.attaque(pokemon1.set_attaques[reponse_utilisateur], pokemon2);
@@ -27,6 +28,8 @@ public class Combat {
             else {
                 System.out.printf("%s essaye de lancer cette attaque, mais il semble ne pas la connaître%n%n", pokemon1.getNom());
             }
+            System.out.println("(Appuie sur ENTRÉE pour continuer)");
+            scan.nextLine();
 
             // Partie 2 : Pokémon adverse (si il n'est pas mort)
 
@@ -39,6 +42,12 @@ public class Combat {
                 }
                 pokemon2.attaque(pokemon2.set_attaques[attaque_aleatoire], pokemon1);
             }
+            else {
+                break;
+            }
+
+            System.out.println("(Appuie sur ENTRÉE pour continuer)");
+            scan.nextLine();
         }
 
         // Après traitement, affiche le nom du pokémon KO
@@ -50,6 +59,8 @@ public class Combat {
             System.out.printf("%s est K.O !%n", pokemon2.getNom());
             System.out.println();
         }
+        System.out.println("(Appuie sur ENTRÉE pour continuer)");
+        scan.nextLine();
     }
 
     public void pokemonAvecDresseurs(Pokemon pokemon1, Pokemon pokemon2) {
@@ -63,6 +74,7 @@ public class Combat {
             System.out.println("Quelle attaque veux-tu lancer ?");
             pokemon1.afficherSetAttaques();
             int reponse_utilisateur = scan.nextInt() - 1;
+            scan.nextLine();
             if (reponse_utilisateur < pokemon1.set_attaques.length && reponse_utilisateur >= 0) {
                 if (pokemon1.set_attaques[reponse_utilisateur] != null) {
                     pokemon1.attaque(pokemon1.set_attaques[reponse_utilisateur], pokemon2);
@@ -71,6 +83,8 @@ public class Combat {
             else {
                 System.out.printf("%s essaye de lancer cette attaque, mais il semble ne pas la connaître%n%n", pokemon1.getNom());
             }
+            System.out.println("(Appuie sur ENTRÉE pour continuer)");
+            scan.nextLine();
 
             // Partie 2 : Pokémon adverse (si il n'est pas mort)
             if (pokemon2.getPv() > 0) {
@@ -84,6 +98,12 @@ public class Combat {
 
                 pokemon2.attaque(pokemon2.set_attaques[attaque_aleatoire], pokemon1);
             }
+            else {
+                break;
+            }
+
+            System.out.println("(Appuie sur ENTRÉE pour continuer)");
+            scan.nextLine();
         }
 
         // Après traitement, affiche le nom du pokémon KO
@@ -95,6 +115,8 @@ public class Combat {
             System.out.printf("%s est K.O !%n", pokemon2.getNom());
             System.out.println();
         }
+        System.out.println("(Appuie sur ENTRÉE pour continuer)");
+        scan.nextLine();
     }
 
     public void dresseurs(Dresseur dresseur1, Dresseur dresseur2) {
@@ -150,10 +172,10 @@ public class Combat {
         }
 
         if (dresseur1_ok_pokemon <= 0) {
-            System.out.printf("%s n'as plus de pokémons !%n%s a perdu !%n", dresseur1.getPrenom(), dresseur1.getPrenom());
+            System.out.printf("%s n'as plus de Pokémons !%n%s a perdu !%n", dresseur1.getPrenom(), dresseur1.getPrenom());
         }
         else {
-            System.out.printf("%s n'as plus de pokémons !%n%s a perdu !%n", dresseur2.getPrenom(), dresseur2.getPrenom());
+            System.out.printf("%s n'as plus de Pokémons !%n%s a perdu !%n", dresseur2.getPrenom(), dresseur2.getPrenom());
         }
 
     }

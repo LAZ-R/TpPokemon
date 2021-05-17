@@ -57,7 +57,6 @@ public class Main {
         Pokemon rattata = new Pokemon("Rattata", 30,3500,90, cran, agitation, null, null);
 
         combat.pokemonSansDresseurs(pikachu, rattata);
-        texte.continuer();
 
         // Création du 1er ennemi
 
@@ -73,8 +72,8 @@ public class Main {
         System.out.println();
 
         if (joueur.pokemons[0].getPv() <= 0) {
-            System.out.println("Tu parviens à fuire en courant, ton pokémon sous le bras.");
-            System.out.printf("Malheureusement, ton %s n'a plus de PV.%n", joueur.pokemons[0].getNom());
+            System.out.println("Tu parviens néanmoins à fuir en courant, ton pokémon sous le bras.");
+            System.out.printf("Malheureusement, ton %s est KO, n'a plus de PV !%n", joueur.pokemons[0].getNom());
             System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
         }
         else {
