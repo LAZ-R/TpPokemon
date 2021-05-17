@@ -49,14 +49,14 @@ public class Main {
         // 1ère rencontre sauvage
 
         System.out.println("Attention, un pokémon sauvage attaque !");
-        System.out.println("tu réagis en lançant ta PokéBall");
+        System.out.println("Tu réagis en lançant ta PokéBall");
         texte.continuer();
 
         Attaque cran = new Attaque("Cran", 10);
         Attaque agitation = new Attaque("Agitation", 35);
         Pokemon rattata = new Pokemon("Rattata", 30,3500,90, cran, agitation, null, null);
 
-        combat.pokemonSansDresseurs(pikachu, rattata);
+        combat.pokemon(pikachu, rattata);
 
         // Création du 1er ennemi
 
@@ -78,7 +78,7 @@ public class Main {
         }
         else {
             System.out.println("James s'enfuit sans demander son reste.");
-            System.out.printf("Ton %s s'est bien battu, malheureusement il est mal en point (%d/%d pv)...%n", joueur.pokemons[0].getNom(), joueur.pokemons[0].getPv(), joueur.pokemons[0].getPvMax());
+            System.out.printf("Ton %s s'est bien battu, malheureusement il est mal en point [%d/%dpv]...%n", joueur.pokemons[0].getNom(), joueur.pokemons[0].getPv(), joueur.pokemons[0].getPvMax());
             System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
         }
 

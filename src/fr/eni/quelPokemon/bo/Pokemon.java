@@ -139,7 +139,7 @@ public class Pokemon {
         System.out.printf("%s%n",this.nom.toUpperCase());
         System.out.printf("Taille : %.2fm%n", (double) this.taille / 100);
         System.out.printf("Poids : %.2fkg%n", (double) this.poids / 1000);
-        System.out.printf("Points de vie : %dpv%n",this.pv);
+        System.out.printf("Points de vie : [%d/%dpv]%n",this.pv, this.pvMax);
         System.out.println("Liste des attaques :");
         this.afficherSetAttaques();
         if (this.dresseur != null) {
@@ -157,11 +157,11 @@ public class Pokemon {
                 if (rand > 0.85) {
                     pokemonAttaque.setPv(pokemonAttaque.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
                     System.out.println("Coup critique !");
-                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
                 }
                 else {
                     pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
-                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
                 }
 
             }
@@ -176,11 +176,11 @@ public class Pokemon {
                 if (rand > 0.85) {
                     pokemonAttaque.setPv(pokemonAttaque.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
                     System.out.println("Coup critique !");
-                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
                 }
                 else {
                     pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
-                    System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
                 }
             }
             else {

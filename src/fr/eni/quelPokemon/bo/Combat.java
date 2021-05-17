@@ -7,65 +7,16 @@ public class Combat {
 
     static Scanner scan = new Scanner(System.in);
 
-    public void pokemonSansDresseurs(Pokemon pokemon1, Pokemon pokemon2) {
 
-        System.out.printf("%s (%s)%n* VS *%n%s (%s)%n", pokemon1.getNom(), pokemon1.getDresseur().getPrenom(), pokemon2.getNom(), "Sauvage");
+    public void pokemon(Pokemon pokemon1, Pokemon pokemon2) {
 
-        System.out.println();
-        while (pokemon1.getPv() > 0 && pokemon2.getPv() > 0) {
-
-            // Partie 1 : Pokémon du joueur
-
-            System.out.println("Quelle attaque veux-tu lancer ?");
-            pokemon1.afficherSetAttaques();
-            int reponse_utilisateur = scan.nextInt() - 1;
-            scan.nextLine();
-            if (reponse_utilisateur < pokemon1.set_attaques.length && reponse_utilisateur >= 0) {
-                if (pokemon1.set_attaques[reponse_utilisateur] != null) {
-                    pokemon1.attaque(pokemon1.set_attaques[reponse_utilisateur], pokemon2);
-                }
-            }
-            else {
-                System.out.printf("%s essaye de lancer cette attaque, mais il semble ne pas la connaître%n%n", pokemon1.getNom());
-            }
-            System.out.println("(Appuie sur ENTRÉE pour continuer)");
-            scan.nextLine();
-
-            // Partie 2 : Pokémon adverse (si il n'est pas mort)
-
-            if (pokemon2.getPv() > 0) {
-
-                Random rand = new Random();
-                int attaque_aleatoire = rand.nextInt(4);
-                while (pokemon2.set_attaques[attaque_aleatoire] == null) {
-                    attaque_aleatoire = rand.nextInt(4);
-                }
-                pokemon2.attaque(pokemon2.set_attaques[attaque_aleatoire], pokemon1);
-            }
-            else {
-                break;
-            }
-
-            System.out.println("(Appuie sur ENTRÉE pour continuer)");
-            scan.nextLine();
+        if (pokemon2.getDresseur() != null) {
+            System.out.printf("%s (%s)%n[%d/%dpv]%n* VS *%n%s (%s)%n[%d/%dpv]%n", pokemon1.getNom(), pokemon1.getDresseur().getPrenom(), pokemon1.getPv(), pokemon1.getPvMax(), pokemon2.getNom(), pokemon2.getDresseur().getPrenom(), pokemon2.getPv(), pokemon2.getPvMax());
+        }
+        else {
+            System.out.printf("%s (%s)%n[%d/%dpv]%n* VS *%n%s (%s)%n[%d/%dpv]%n", pokemon1.getNom(), pokemon1.getDresseur().getPrenom(), pokemon1.getPv(), pokemon1.getPvMax(), pokemon2.getNom(), "Sauvage", pokemon2.getPv(), pokemon2.getPvMax());
         }
 
-        // Après traitement, affiche le nom du pokémon KO
-
-        if (pokemon1.getPv() <= 0) {
-            System.out.printf("%s est K.O !%n", pokemon1.getNom());
-            System.out.println();
-        } else {
-            System.out.printf("%s est K.O !%n", pokemon2.getNom());
-            System.out.println();
-        }
-        System.out.println("(Appuie sur ENTRÉE pour continuer)");
-        scan.nextLine();
-    }
-
-    public void pokemonAvecDresseurs(Pokemon pokemon1, Pokemon pokemon2) {
-
-        System.out.printf("%s (%s)%n* VS *%n%s (%s)%n", pokemon1.getNom(), pokemon1.getDresseur().getPrenom(), pokemon2.getNom(), pokemon2.getDresseur().getPrenom());
 
         System.out.println();
         while (pokemon1.getPv() > 0 && pokemon2.getPv() > 0) {
@@ -153,7 +104,7 @@ public class Combat {
                 }
             }
 
-            pokemonAvecDresseurs(dresseur1.pokemons[dresseur1_nextGoodPoke], dresseur2.pokemons[dresseur2_nextGoodPoke]);
+            pokemon(dresseur1.pokemons[dresseur1_nextGoodPoke], dresseur2.pokemons[dresseur2_nextGoodPoke]);
 
             dresseur1_ok_pokemon = 0;
             for (int i = 0; i < dresseur1.pokemons.length; i++) {
