@@ -46,8 +46,11 @@ public class HistoireTextes {
 
     public void intro_4() {
 
-        System.out.println("Tu rencontres un homme avec une casquette un peu étrange au détour d'une allée");
-        System.out.println("Il te demande l'heure, mais te le vois bien essayer de voler ta PokéBall !");
+        System.out.println("Après cette rencontre un peu mouvementée, tu décides d'aller acheter des bonbons.");
+        System.out.println("Tu prends donc la route de la boulangerie.");
+        continuer();
+        System.out.println("Au détour d'une allée, tu rencontres un homme avec une casquette un peu étrange.");
+        System.out.println("Il te demande l'heure, mais te le vois bien essayer de voler ta PokéBall !!!");
         System.out.println();
         System.out.println("Se sentant démasqué, il te défie dans un Combat de Dresseurs !");
         continuer();

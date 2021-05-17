@@ -78,7 +78,7 @@ public class Main {
         }
         else {
             System.out.println("James s'enfuit sans demander son reste.");
-            System.out.printf("Ton %s s'est bien battu, malheureusement il est mal en point...(%d/%d pv)%n", joueur.pokemons[0].getNom(), joueur.pokemons[0].getPv(), joueur.pokemons[0].getPvMax());
+            System.out.printf("Ton %s s'est bien battu, malheureusement il est mal en point (%d/%d pv)...%n", joueur.pokemons[0].getNom(), joueur.pokemons[0].getPv(), joueur.pokemons[0].getPvMax());
             System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
         }
 
@@ -90,6 +90,7 @@ public class Main {
         centrePokemon.soignerTousPkmn(joueur);
         texte.centrePkmnOut();
 
+        // Fin de l'intro
         System.out.println();
         System.out.println("L'introduction est maintenant terminée, merci d'y avoir joué !");
         System.out.println("Si tu veux en voir plus, donne l'argent...");
