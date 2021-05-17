@@ -63,7 +63,7 @@ public class HistoireTextes {
     }
 
     public void centrePkmnIn() {
-        System.out.println("*DING*");
+        System.out.println("* DING *");
         System.out.println("\"Bonjour, et bienvenue dans notre centre Pokémon !\"");
         System.out.println("\"Confiez-nous vos Pokémons.\"");
         continuer();
