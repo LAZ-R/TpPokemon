@@ -73,7 +73,7 @@ public class Main {
 
         if (joueur.pokemons[0].getPv() <= 0) {
             System.out.println("Tu parviens néanmoins à fuir en courant, ton pokémon sous le bras.");
-            System.out.printf("Malheureusement, ton %s est KO, n'a plus de PV !%n", joueur.pokemons[0].getNom());
+            System.out.printf("Malheureusement, ton %s est KO, il n'a plus de PV !%n", joueur.pokemons[0].getNom());
             System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
         }
         else {

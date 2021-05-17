@@ -40,7 +40,7 @@ public class HistoireTextes {
 
         System.out.println("Tu sors du laboratoire du Professeur Chen en remerciant son assistant et en admirant ta PokéBall.");
         System.out.println();
-        System.out.println("En te baladant autour du labo, tu entends un bruit dans des hautes herbes.");
+        System.out.println("En te baladant autour du labo, tu entends un bruit dans les hautes herbes environnantes.");
         continuer();
     }
 
@@ -50,7 +50,7 @@ public class HistoireTextes {
         System.out.println("Tu prends donc la route de la boulangerie.");
         continuer();
         System.out.println("Au détour d'une allée, tu rencontres un homme avec une casquette un peu étrange.");
-        System.out.println("Il te demande l'heure, mais te le vois bien essayer de voler ta PokéBall !!!");
+        System.out.println("Il te demande l'heure, mais tu vois bien qu'il essaye de voler ta PokéBall !!!");
         System.out.println();
         System.out.println("Se sentant démasqué, il te défie dans un Combat de Dresseurs !");
         continuer();
@@ -58,12 +58,12 @@ public class HistoireTextes {
 
     public void intro_5() {
         System.out.println("Tu te diriges donc vers le Centre Pokémon le plus proche.");
-        System.out.println("Tu arrives devant le bâtiment, essouflé et inquiet.");
+        System.out.println("Tu arrives devant le bâtiment.");
         continuer();
     }
 
     public void centrePkmnIn() {
-        System.out.println("* DING *");
+        System.out.println("♫ ♪ DING ♪ ♫");
         System.out.println("\"Bonjour, et bienvenue dans notre centre Pokémon !\"");
         System.out.println("\"Confiez-nous vos Pokémons.\"");
         continuer();

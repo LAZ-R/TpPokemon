@@ -149,6 +149,7 @@ public class Pokemon {
     }
 
     public void attaque (Attaque attaque, Pokemon pokemonAttaque) {
+
         double rand = Math.random();
 
         if (this.pv / this.pvMax >= 0.35) {
