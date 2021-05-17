@@ -39,7 +39,7 @@ public class Main {
 
         System.out.printf("%s recoit un %s !%n",joueur.getPrenom(), pikachu.getNom());
         System.out.println("Félicitation, voici ton premier Pokémon !");
-        System.out.println();
+        texte.continuer();
 
         pikachu.afficher();
         texte.continuer();
@@ -49,6 +49,7 @@ public class Main {
         // 1ère rencontre sauvage
 
         System.out.println("Attention, un pokémon sauvage attaque !");
+        System.out.println("tu réagis en lançant ta PokéBall");
         texte.continuer();
 
         Attaque cran = new Attaque("Cran", 10);
@@ -85,15 +86,14 @@ public class Main {
         texte.continuer();
 
         // Visite au centre Pokémon
-
         texte.intro_5();
         texte.centrePkmnIn();
         centrePokemon.soignerTousPkmn(joueur);
         texte.centrePkmnOut();
 
         System.out.println();
-
-        System.out.println("Voilà, l'introduction est maintenant terminée");
+        System.out.println("L'introduction est maintenant terminée, merci d'y avoir joué !");
+        System.out.println("Si tu veux en voir plus, donne l'argent...");
     }
 
 }

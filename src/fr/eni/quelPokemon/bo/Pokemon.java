@@ -121,8 +121,11 @@ public class Pokemon {
     public void afficherSetAttaques() {
         for (int i = 0; i < this.set_attaques.length; i++) {
             if (this.set_attaques[i] != null) {
-                System.out.printf("%d : ", i + 1);
+                System.out.printf("  %d/ ", i + 1);
                 this.set_attaques[i].afficher();
+            }
+            else {
+                System.out.printf("  %d/ (vide)%n", i + 1);
             }
         }
     }
@@ -147,7 +150,7 @@ public class Pokemon {
         if (rand > 0.1) {
             System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
             pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
-            System.out.printf("%s perds %d points de vie !%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats());
+            System.out.printf("%s perds %d points de vie ! (%d/%d pv)%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
         }
         else {
             System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
