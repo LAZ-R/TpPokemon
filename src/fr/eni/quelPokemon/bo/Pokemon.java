@@ -104,6 +104,10 @@ public class Pokemon {
         this.pv = pv;
     }
 
+    public int getPvMax() {
+        return pvMax;
+    }
+
     public Dresseur getDresseur() {
         return this.dresseur;
     }

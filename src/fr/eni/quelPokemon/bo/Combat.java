@@ -60,8 +60,7 @@ public class Combat {
         while (pokemon1.getPv() > 0 && pokemon2.getPv() > 0) {
 
             // Partie 1 : Pokémon du joueur
-
-            System.out.println("Quelle attaque voulez-vous lancer ?");
+            System.out.println("Quelle attaque veux-tu lancer ?");
             pokemon1.afficherSetAttaques();
             int reponse_utilisateur = scan.nextInt() - 1;
             if (reponse_utilisateur < pokemon1.set_attaques.length && reponse_utilisateur >= 0) {
@@ -74,14 +73,15 @@ public class Combat {
             }
 
             // Partie 2 : Pokémon adverse (si il n'est pas mort)
-
             if (pokemon2.getPv() > 0) {
 
+                // Choix d'une attaque aléatoire
                 Random rand = new Random();
                 int attaque_aleatoire = rand.nextInt(4);
                 while (pokemon2.set_attaques[attaque_aleatoire] == null) {
                     attaque_aleatoire = rand.nextInt(4);
                 }
+
                 pokemon2.attaque(pokemon2.set_attaques[attaque_aleatoire], pokemon1);
             }
         }
@@ -150,10 +150,10 @@ public class Combat {
         }
 
         if (dresseur1_ok_pokemon <= 0) {
-            System.out.printf("%s n'as plus de pokémons !%n%s a perdu !", dresseur1.getPrenom(), dresseur1.getPrenom());
+            System.out.printf("%s n'as plus de pokémons !%n%s a perdu !%n", dresseur1.getPrenom(), dresseur1.getPrenom());
         }
         else {
-            System.out.printf("%s n'as plus de pokémons !%n%s a perdu !", dresseur2.getPrenom(), dresseur2.getPrenom());
+            System.out.printf("%s n'as plus de pokémons !%n%s a perdu !%n", dresseur2.getPrenom(), dresseur2.getPrenom());
         }
 
     }

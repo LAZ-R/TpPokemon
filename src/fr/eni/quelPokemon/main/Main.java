@@ -1,9 +1,6 @@
 package fr.eni.quelPokemon.main;
 
-import fr.eni.quelPokemon.bo.Attaque;
-import fr.eni.quelPokemon.bo.Combat;
-import fr.eni.quelPokemon.bo.Dresseur;
-import fr.eni.quelPokemon.bo.Pokemon;
+import fr.eni.quelPokemon.bo.*;
 
 import java.util.Scanner;
 
@@ -17,6 +14,7 @@ public class Main {
     static Scanner global_scanner = new Scanner(System.in);
     static HistoireTextes texte = new HistoireTextes();
     static Combat combat = new Combat();
+    static CentrePkmn centrePokemon = new CentrePkmn();
 
 
     public static void main(String[] args) {
@@ -32,10 +30,6 @@ public class Main {
         // Début de l'histoire
         texte.intro_2(joueur.getPrenom());
 
-        System.out.println();
-        System.out.println("(appuye sur ENTRÉE pour continuer)");
-        global_scanner.nextLine();
-
         // Acquisition du Pikachu
         Attaque statik = new Attaque("Statik", 20);
         Attaque paratonnerre = new Attaque("Paratonnerre", 75);
@@ -43,37 +37,63 @@ public class Main {
 
         joueur.capture_sansCondition(pikachu);
 
-        System.out.printf("%s a reçu un %s !%n",joueur.getPrenom(), pikachu.getNom());
+        System.out.printf("%s recoit un %s !%n",joueur.getPrenom(), pikachu.getNom());
         System.out.println("Félicitation, voici ton premier Pokémon !");
         System.out.println();
 
         pikachu.afficher();
+        texte.continuer();
 
-        System.out.println();
-        System.out.println("(appuye sur ENTRÉE pour continuer)");
-        global_scanner.nextLine();
-
+        texte.intro_3();
 
         // 1ère rencontre sauvage
+
+        System.out.println("Attention, un pokémon sauvage attaque !");
+        texte.continuer();
+
         Attaque cran = new Attaque("Cran", 10);
         Attaque agitation = new Attaque("Agitation", 35);
         Pokemon rattata = new Pokemon("Rattata", 30,3500,90, cran, agitation, null, null);
 
-        System.out.println("Attention, un pokémon sauvage attaque !");
-        System.out.println();
-        System.out.println("(appuye sur ENTRÉE pour continuer)");
-        global_scanner.nextLine();
-
         combat.pokemonSansDresseurs(pikachu, rattata);
+        texte.continuer();
 
         // Création du 1er ennemi
+
+        texte.intro_4();
+
         Dresseur james = new Dresseur("James");
-        Attaque crocDeMort = new Attaque("Croc-de-Mort", 100);
-        Pokemon rattatac = new Pokemon("Rattatac", 130,13500,190, cran, agitation, crocDeMort, null);
+        Attaque crocDeMort = new Attaque("Croc-de-Mort", 80);
+        Pokemon rattatac = new Pokemon("Rattatac", 130,13500,180, cran, agitation, crocDeMort, null);
         james.capture_sansCondition(rattatac);
 
         // 1er combat de dresseur
         combat.dresseurs(joueur, james);
+        System.out.println();
 
+        if (joueur.pokemons[0].getPv() <= 0) {
+            System.out.println("Tu parviens à fuire en courant, ton pokémon sous le bras.");
+            System.out.printf("Malheureusement, ton %s n'a plus de PV.%n", joueur.pokemons[0].getNom());
+            System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
+        }
+        else {
+            System.out.println("James s'enfuit sans demander son reste.");
+            System.out.printf("Ton %s s'est bien battu, malheureusement il est mal en point...(%d/%d pv)%n", joueur.pokemons[0].getNom(), joueur.pokemons[0].getPv(), joueur.pokemons[0].getPvMax());
+            System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
+        }
+
+        texte.continuer();
+
+        // Visite au centre Pokémon
+
+        texte.intro_5();
+        texte.centrePkmnIn();
+        centrePokemon.soignerTousPkmn(joueur);
+        texte.centrePkmnOut();
+
+        System.out.println();
+
+        System.out.println("Voilà, l'introduction est maintenant terminée");
     }
+
 }
