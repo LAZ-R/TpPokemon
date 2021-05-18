@@ -61,6 +61,11 @@ public class Dresseur {
         System.out.println();
     }
 
+    /** Méthode qui ajoute un pokémon au tableau de pokémon de ce dresseur ("capture")
+     *  sans condition.
+     *
+     * @param pokemonCapture Pokemon
+     */
     public void capture_sansCondition(Pokemon pokemonCapture) {
         for (int i = 0; i < this.pokemons.length; i++) {
             if (pokemons[i] == null) {
@@ -71,10 +76,19 @@ public class Dresseur {
         }
     }
 
+    // TODO: Méthode de capture d'un pokémon sauvage (avec condition).
+
+    /** Méthode qui renvoie le nombre de pokémon dans l'équipe de pokémon de ce dresseur.
+     *
+     * @return int
+     */
     public int combienDePokemon() {
         int nbPoke = 0;
+        // Pour chaque case du tableau de Pokémons
         for (int i = 0; i < this.pokemons.length; i++) {
+            // Si la case n'est pas nulle
             if (pokemons[i] == null) {
+                // on incrémente le nombre de Pokémons dans l'équipe
                 nbPoke +=1;
             }
         }

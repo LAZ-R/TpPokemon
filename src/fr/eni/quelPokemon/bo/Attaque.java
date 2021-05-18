@@ -13,7 +13,6 @@ public class Attaque {
 
     // Attributs de classe
 
-
     // Méthodes
 
     /** Constructeur avec tous les paramètres.

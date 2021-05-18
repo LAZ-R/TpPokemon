@@ -2,10 +2,19 @@ package fr.eni.quelPokemon.main;
 
 import java.util.Scanner;
 
+/** Classe qui contient les textes relatifs à l'histoire,
+ *  chaque dialogue étant sous forme de méthode.
+ *
+ * @author laz_R
+ * @version 1.0
+ */
 public class HistoireTextes {
 
     static Scanner global_scanner = new Scanner(System.in);
 
+    /** Méthode pour demander au joueur de continuer l'execution
+     *
+     */
     public void continuer() {
 
         System.out.println();

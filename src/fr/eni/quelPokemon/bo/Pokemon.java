@@ -20,6 +20,7 @@ public class Pokemon {
 
     // Attributs de classe
     public Attaque[] set_attaques = new Attaque[4];
+
     // Méthodes
 
     /** Constructeur avec tous les paramètres, sauf Dresseur.
@@ -102,6 +103,7 @@ public class Pokemon {
 
     public void setPv(int pv) {
         this.pv = pv;
+        // Pour l'affichage, les pv ne seront jamais négatifs
         if (this.pv < 0) {
             this.pv = 0;
         }
@@ -122,12 +124,16 @@ public class Pokemon {
     /** Méthode d'affichage du set d'attaque d'un pokémon
      */
     public void afficherSetAttaques() {
+        // Pour chaque case du tableau d'attaque
         for (int i = 0; i < this.set_attaques.length; i++) {
+            //Si la case n'est pas vide
             if (this.set_attaques[i] != null) {
+                // On affiche l'attaque
                 System.out.printf("  %d/ ", i + 1);
                 this.set_attaques[i].afficher();
             }
             else {
+                // Sinon on affiche qu'elle est vide
                 System.out.printf("  %d/ (vide)%n", i + 1);
             }
         }
@@ -148,48 +154,82 @@ public class Pokemon {
 
     }
 
-    public void attaque (Attaque attaque, Pokemon pokemonAttaque) {
+    /** Méthode qui régit la façon dont un pokémon lance une attaque.
+     *  Lancement aléatoire de coups critiques et d'échecs.
+     *
+     * @param attaque Attaque
+     * @param pokemonAdverse Pokemon
+     */
+    public void attaque (Attaque attaque, Pokemon pokemonAdverse) {
 
+        /* Un chiffre aléatoire compris entre 0 et 1 est choisi à chaque lancement d'attaque pour gérer
+         * les probabilités qu'a un pokémon de rater une attaque, ou au contraire de faire un coup critique.
+         */
         double rand = Math.random();
 
+        // La probabillité d'échec est differente selon le pourcentage de vie restante du pokémon qui lance l'attaque.
+
+        // On regarde donc d'abord si la vie du pokémon est supérieure ou égale à 35% de son total de pv.
         if (this.pv / this.pvMax >= 0.35) {
+
+            // Si le chiffre aléatoire est supérieur à 0.1 (90% des cas) le pokémon lance son attaque sans souci
             if (rand > 0.1) {
                 System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+
+                // dans les 15% les plus hauts, on lance un coup critique
                 if (rand > 0.85) {
-                    pokemonAttaque.setPv(pokemonAttaque.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
+                    // On va donc enlever aux pv du pokémon adverse les points de dégats de l'attaque (x 1.5 parce que coup critique)
+                    pokemonAdverse.setPv(pokemonAdverse.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
                     System.out.println("Coup critique !");
-                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAdverse.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAdverse.getPv(), pokemonAdverse.getPvMax());
                 }
+
+                // Sinon on lance une attaque normale
                 else {
-                    pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
-                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+
+                    // On va donc enlever aux pv du pokémon adverse les points de dégats de l'attaque
+                    pokemonAdverse.setPv(pokemonAdverse.getPv() - attaque.getPointsDeDegats());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAdverse.getNom(), attaque.getPointsDeDegats(), pokemonAdverse.getPv(), pokemonAdverse.getPvMax());
                 }
 
             }
+
+            // Si le chiffre aléatoire est inférieur à 0.1 (10% des cas), le pokémon rate son attaque
             else {
                 System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
                 System.out.printf("%s rate son attaque !%n%n",this.nom);
             }
         }
+
+        // Si la vie du pokémon est inférieure à 35% de son total de pv.
         else {
+
+            // Si le chiffre aléatoire est supérieur à 0.2 (80% des cas) le pokémon lance son attaque sans souci
             if (rand > 0.2) {
                 System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
+
+                // dans les 15% les plus hauts, on lance un coup critique
                 if (rand > 0.85) {
-                    pokemonAttaque.setPv(pokemonAttaque.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
+
+                    // On va donc enlever aux pv du pokémon adverse les points de dégats de l'attaque (x 1.5 parce que coup critique)
+                    pokemonAdverse.setPv(pokemonAdverse.getPv() - (int)(attaque.getPointsDeDegats() * 1.5));
                     System.out.println("Coup critique !");
-                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAdverse.getNom(), (int)(attaque.getPointsDeDegats() * 1.5), pokemonAdverse.getPv(), pokemonAdverse.getPvMax());
                 }
+
+                // Sinon on lance une attaque normale
                 else {
-                    pokemonAttaque.setPv(pokemonAttaque.getPv() - attaque.getPointsDeDegats());
-                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAttaque.getNom(), attaque.getPointsDeDegats(), pokemonAttaque.getPv(), pokemonAttaque.getPvMax());
+                    // On va donc enlever aux pv du pokémon adverse les points de dégats de l'attaque
+                    pokemonAdverse.setPv(pokemonAdverse.getPv() - attaque.getPointsDeDegats());
+                    System.out.printf("%s perds %d points de vie ! [%d/%dpv]%n%n", pokemonAdverse.getNom(), attaque.getPointsDeDegats(), pokemonAdverse.getPv(), pokemonAdverse.getPvMax());
                 }
             }
+
+            // Si le chiffre aléatoire est inférieur à 0.2 (20% des cas), le pokémon rate son attaque
             else {
                 System.out.printf("%s lance %s%n", this.nom, attaque.getNom());
                 System.out.printf("%s rate son attaque !%n%n",this.nom);
             }
         }
-
-
     }
 }
