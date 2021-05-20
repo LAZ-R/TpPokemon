@@ -1,4 +1,4 @@
-package fr.eni.quelPokemon.main;
+package fr.eni.quelPokemon.texte;
 
 import java.util.Scanner;
 

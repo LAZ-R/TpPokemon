@@ -1,6 +1,8 @@
 package fr.eni.quelPokemon.main;
 
 import fr.eni.quelPokemon.bo.*;
+import fr.eni.quelPokemon.texte.HistoireTextes;
+import fr.eni.quelPokemon.texte.Sprites;
 
 import java.util.Scanner;
 
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner global_scanner = new Scanner(System.in);
+    static Sprites afficherSprite = new Sprites();
     static HistoireTextes texte = new HistoireTextes();
     static Combat combat = new Combat();
     static CentrePkmn centrePokemon = new CentrePkmn();
@@ -41,6 +44,8 @@ public class Main {
         System.out.println("Félicitation, voici ton premier Pokémon !");
         texte.continuer();
 
+        //afficherSprite.pikachu();
+
         pikachu.afficher();
         texte.continuer();
 
@@ -48,7 +53,7 @@ public class Main {
 
         // 1ère rencontre sauvage
 
-        System.out.println("Attention, un pokémon sauvage attaque !");
+        System.out.println("Attention, un Pokémon sauvage attaque !");
         System.out.println("Tu réagis en lançant ta PokéBall");
         texte.continuer();
 
@@ -72,7 +77,7 @@ public class Main {
         System.out.println();
 
         if (joueur.pokemons[0].getPv() <= 0) {
-            System.out.println("Tu parviens néanmoins à fuir en courant, ton pokémon sous le bras.");
+            System.out.println("Tu parviens néanmoins à fuir en courant, ton Pokémon sous le bras.");
             System.out.printf("Malheureusement, ton %s est KO, il n'a plus de PV !%n", joueur.pokemons[0].getNom());
             System.out.println("Il va donc falloir le soigner dans un Centre Pokémon.");
         }
